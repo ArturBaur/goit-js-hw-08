@@ -27,17 +27,3 @@ const lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
 });
-
-lightbox.on('show.simplelightbox', () => {
-  document.addEventListener('keydown', escapePress);
-});
-
-lightbox.on('close.simplelightbox', () => {
-  document.removeEventListener('keydown', escapePress);
-});
-
-function escapePress(eventKey) {
-  if (eventKey.key === 'Escape') {
-    lightbox.close();
-  }
-}

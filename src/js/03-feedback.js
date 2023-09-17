@@ -32,14 +32,23 @@ window.addEventListener('load', populateFormFields);
 const handleSubmit = event => {
   event.preventDefault();
 
-  localStorage.removeItem('feedback-form-state');
+  const emailValue = emailInput.value;
+  const messageValue = messageInput.value;
+
+  if (!emailValue || !messageValue) {
+    alert('Wypełnij wszystkie pola formularza przed wysłaniem.');
+    return;
+  }
+
+  console.log('Form data submitted:', {
+    email: emailValue,
+    message: messageValue,
+  });
+
   emailInput.value = '';
   messageInput.value = '';
 
-  console.log('Form data submitted:', {
-    email: emailInput.value,
-    message: messageInput.value,
-  });
+  localStorage.removeItem('feedback-form-state');
 };
 
 feedbackForm.addEventListener('submit', handleSubmit);
